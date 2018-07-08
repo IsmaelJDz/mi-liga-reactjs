@@ -16,6 +16,7 @@ class Calendario extends Component {
     render() {
         return (
             <div className="calendarios">
+                Equipo: {this.props.match.params.equipo} 
                 <Juego
                     localNombre="Felinos"
                     localLogo={LogoFelinos}
