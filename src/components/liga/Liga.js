@@ -20,8 +20,28 @@ import FotoManuel from './../../assets/fotos/manuel.png';
 import FotoJose from './../../assets/fotos/jose.png';
 import FotoPaco from './../../assets/fotos/paco.png';
 
+import equiposJson from '../../assets/data/equipos.json';
+
 
 class Liga extends Component {
+
+  state = {
+    equipos: [],
+    jugadores: []
+  }
+
+  componentDidMount () {
+    let equipos = { ...this.state.equipos }
+    equipos = equiposJson;
+    this.setState({ equipos });
+
+    fetch('https://api-mi-liga.now.sh/api/jugadores')
+    .then((res) => res.json())
+    .then( dataJugadores => {
+      this.setState({ jugadores: dataJugadores })
+    })
+  }
+
   render() {
     return (
       <div className="contenedor">
