@@ -23,6 +23,28 @@ class Equipo extends Component {
     this.setState({ favo });
 
   }
+
+  // Este metodo se ejecuta una vez que el componente se halla montado
+  componentDidMount() {
+    console.log('Done !')
+
+    const localFavs = localStorage.getItem(this.props.nombre)
+    console.log(localFavs)
+    if (localFavs) {
+      this.setState({ 
+        favo: JSON.parse(localFavs)
+      })
+    }
+  }
+
+  // Escucha cada que el componente recibe una actualizacion
+  componentDidUpdate() {
+    console.log(this.props)
+
+    //Uso de localStorage vamos a utilizar el metodo setItem y recibe dos valores el nombre y el valor
+    localStorage.setItem(this.props.nombre, JSON.stringify(this.state.favo))
+  }
+
   render() {
     return (
       <div>
